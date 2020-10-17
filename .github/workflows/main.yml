@@ -122,12 +122,12 @@ jobs:
         if: |
           !startsWith(github.ref, 'refs/tags/v') &&
           github.ref != 'refs/heads/master'
-        run: cd combiner && ./gradlew publish -PthirdParty
+        run: cd combiner && ./gradlew publish -Pthirdparty
       - name: Combine (Master)
         if: |
           github.repository_owner == 'wpilibsuite' &&
           github.ref == 'refs/heads/master'
-        run: cd combiner && ./gradlew publish -PthirdParty
+        run: cd combiner && ./gradlew publish -Pthirdparty
         env:
           RUN_AZURE_ARTIFACTORY_RELEASE: 'TRUE'
           ARTIFACTORY_PUBLISH_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
@@ -136,7 +136,7 @@ jobs:
         if: |
           github.repository_owner == 'wpilibsuite' &&
           startsWith(github.ref, 'refs/tags/v')
-        run: cd combiner && ./gradlew publish -PthirdParty -PreleaseRepoPublish
+        run: cd combiner && ./gradlew publish -Pthirdparty -PreleaseRepoPublish
         env:
           RUN_AZURE_ARTIFACTORY_RELEASE: 'TRUE'
           ARTIFACTORY_PUBLISH_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
